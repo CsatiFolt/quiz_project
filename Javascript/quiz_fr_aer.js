@@ -24,6 +24,7 @@ let answers_rn = [];
 //A betoltes, sh_quest func-okhoz és a createElement-ekhez és beállításaikhoz kellett AI segítség, mert gyorsabb vele szintaxist keresni
 //A shuffle internetről van
 //Jó válaszok kinézhetők, elvileg php kéne hozzá, amihez lusta vagyok
+//Swal és then teljesen új volt(Még azzal sem tudnék mit kezdeni egyedül)
 
 
 async function betoltes() {       //Betölti a file-t(ezt még tanulni kell, vannak benne új cuccok)
@@ -121,7 +122,52 @@ function next_q() {     //Átvált a következő kérdésre
         for (let g of gombok) {   //Eltűnteti a gombokat
             g.style.display = "none";
         }
+        vegeredmeny(maxPont);
     }
+}
+
+function vegeredmeny(maxPont) {
+    const szazalek = Math.max(0, Math.round(pont / maxPont * 100));
+    let ertekeles;
+    let ikon;
+
+    if (szazalek >= 90) {
+        ertekeles = "Kiváló!";
+        ikon = "success";
+    } else if (szazalek >= 70) {
+        ertekeles = "Nagyon jó!";
+        ikon = "success";
+    } else if (szazalek >= 50) {
+        ertekeles = "Nem rossz!";
+        ikon = "info";
+    } else if (szazalek >= 30) {
+        ertekeles = "Van még mit gyakorolni.";
+        ikon = "warning";
+    } else {
+        ertekeles = "Ez most nem sikerült.";
+        ikon = "error";
+    }
+
+    swal({
+        title: ertekeles,
+        text: `${pont} / ${maxPont} pont (${szazalek}%)`,
+        icon: ikon,
+        button: "Újrakezdés",
+        closeOnClickOutside: false,
+        closeOnEsc: false
+    }).then(ujrakezdes);
+}
+
+function ujrakezdes() {
+    index = 0;
+    pont = 0;
+    cim.textContent = "Quiz";
+    for (let g of gombok) {
+        g.style.display = "";
+    }
+    g_ell.disabled = false;
+    g_next.disabled = true;
+    inditas();
 }
 
 betoltes();
