@@ -128,7 +128,7 @@ betoltes();
 
 
 //Ötlet
-        //Style: frutiger aero
+        //Style: frutiger aero(Ez sem teljesen egyedül készült az alap kialakítás az enyém, stílus ötlet: frutigeraeroarchive.org oldalról van)
         //Scoring:  - Easy-Hard question: 1-3 points
         //          - Partial answers give points
         //          - Minus points for no-read guesses(pl. alma egy kék zöldség) 
