@@ -1,0 +1,311 @@
+[
+    {
+        "kerdes": "Mit ad vissza a Number(\"\") kifejezés?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "0", "helyes": true, "miert": "Az üres szöveget a Number() 0-ra alakítja, ezért kell az üres mezőt még az átalakítás előtt ellenőrizni."},
+            {"szoveg": "NaN", "helyes": false, "miert": "NaN akkor lesz, ha a szöveg nem alakítható számmá, pl. \"abc\"."},
+            {"szoveg": "undefined", "helyes": false, "miert": "A Number() mindig szám típusú értéket ad vissza, undefined-ot soha."},
+            {"szoveg": "null", "helyes": false, "miert": "A null nem szám típusú, a Number() eredménye viszont mindig az."},
+            {"szoveg": "Egy piros almát", "helyes": false, "absurd": true, "miert": "Ez nem is JavaScript-érték."}
+        ]
+    },
+    {
+        "kerdes": "Mi lesz \"A\" + 5 + 3 értéke?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "\"A53\"", "helyes": true, "miert": "Balról jobbra halad: \"A\" + 5 = \"A5\", majd \"A5\" + 3 = \"A53\"."},
+            {"szoveg": "\"A8\"", "helyes": false, "miert": "Ez csak zárójellel lenne így: \"A\" + (5 + 3)."},
+            {"szoveg": "\"8A\"", "helyes": false, "miert": "Ez az 5 + 3 + \"A\" eredménye lenne: ott előbb a két számot adja össze."},
+            {"szoveg": "NaN", "helyes": false, "miert": "Szöveghez adva a szám szöveggé alakul, nem lesz NaN."},
+            {"szoveg": "Hibaüzenet", "helyes": false, "miert": "Szöveg és szám összeadása érvényes, összefűzést jelent."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a typeof NaN kifejezés?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "\"number\"", "helyes": true, "miert": "A NaN (Not a Number) meglepő módon szám típusú: egy érvénytelen számot jelöl."},
+            {"szoveg": "\"NaN\"", "helyes": false, "miert": "Nincs \"NaN\" nevű típus; a typeof csak létező típusneveket ad vissza."},
+            {"szoveg": "\"undefined\"", "helyes": false, "miert": "Az undefined a meg nem adott értékek típusa, a NaN-é nem."},
+            {"szoveg": "\"string\"", "helyes": false, "miert": "A NaN nem szöveg, hanem a szám típus egy különleges értéke."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a typeof null kifejezés?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "\"object\"", "helyes": true, "miert": "Ez a JavaScript egy régi hibája, amit a kompatibilitás miatt sosem javítottak ki."},
+            {"szoveg": "\"null\"", "helyes": false, "miert": "Logikus lenne, de a typeof null eredménye történeti okból \"object\"."},
+            {"szoveg": "\"undefined\"", "helyes": false, "miert": "A null és az undefined két különböző érték, más typeof-fal."},
+            {"szoveg": "\"number\"", "helyes": false, "miert": "Bár a Number(null) 0, a typeof null nem \"number\"."}
+        ]
+    },
+    {
+        "kerdes": "Mi lesz a 0.1 + 0.2 === 0.3 kifejezés értéke?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "false", "helyes": true, "miert": "A gép a tizedestörteket kettes számrendszerben csak közelítve tárolja: 0.1 + 0.2 = 0.30000000000000004."},
+            {"szoveg": "true", "helyes": false, "miert": "Matematikailag igaz lenne, de a lebegőpontos számábrázolás miatt az összeg 0.30000000000000004."},
+            {"szoveg": "0.3", "helyes": false, "miert": "Az === összehasonlítás eredménye mindig true vagy false, nem szám."},
+            {"szoveg": "Hibaüzenet", "helyes": false, "miert": "Tizedestörtek összeadása és összehasonlítása érvényes művelet."},
+            {"szoveg": "Attól függ, milyen nap van", "helyes": false, "absurd": true, "miert": "A JavaScript nem nézi a naptárt."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a Math.round(-2.5)?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "-2", "helyes": true, "miert": "A Math.round a pontosan .5-re végződő számokat a nagyobb egész felé kerekíti, és a -2 nagyobb, mint a -3."},
+            {"szoveg": "-3", "helyes": false, "miert": "Sok más nyelvben így van, de a JavaScript .5-nél mindig a pozitív irány felé kerekít."},
+            {"szoveg": "-2.5", "helyes": false, "miert": "A Math.round mindig egész számot ad vissza."},
+            {"szoveg": "2", "helyes": false, "miert": "A kerekítés nem változtat az előjelen."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a parseInt(\"12px\")?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "12", "helyes": true, "miert": "A parseInt balról olvassa a számjegyeket, és az első nem számjegy karakternél megáll."},
+            {"szoveg": "NaN", "helyes": false, "miert": "Ez a Number(\"12px\") eredménye lenne; a parseInt elfogadja, ha a szöveg számmal kezdődik."},
+            {"szoveg": "\"12\"", "helyes": false, "miert": "A parseInt számot ad vissza, nem szöveget."},
+            {"szoveg": "1", "helyes": false, "miert": "Nem csak az első számjegyet olvassa be, hanem mindet az első nem számjegy karakterig."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a Boolean(\"0\")?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "true", "helyes": true, "miert": "Minden nem üres szöveg igaznak számít, akkor is, ha a tartalma \"0\"."},
+            {"szoveg": "false", "helyes": false, "miert": "A 0 szám hamis lenne, de a \"0\" szöveg nem üres, ezért igaz."},
+            {"szoveg": "0", "helyes": false, "miert": "A Boolean() mindig true-t vagy false-t ad vissza."},
+            {"szoveg": "NaN", "helyes": false, "miert": "A Boolean() nem számot ad vissza, hanem logikai értéket."}
+        ]
+    },
+    {
+        "kerdes": "Mi történik? const x = 5; x = 6;",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "TypeError hibát kapunk", "helyes": true, "miert": "A const változónak nem lehet új értéket adni: \"Assignment to constant variable.\""},
+            {"szoveg": "x értéke 6 lesz", "helyes": false, "miert": "Ez let-tel működne, const-tal nem."},
+            {"szoveg": "x értéke 5 marad, hiba nélkül", "helyes": false, "miert": "A JavaScript ilyenkor nem hallgat: hibát dob."},
+            {"szoveg": "x értéke undefined lesz", "helyes": false, "miert": "A tiltott értékadás nem törli a meglévő értéket, hanem hibát dob."},
+            {"szoveg": "A számítógép újraindul", "helyes": false, "absurd": true, "miert": "Egy JavaScript-hiba legfeljebb a programot állítja meg, a gépet nem."}
+        ]
+    },
+    {
+        "kerdes": "Mi történik? const t = [1]; t.push(2);",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "t tartalma [1, 2] lesz, hiba nélkül", "helyes": true, "miert": "A const csak az új értékadást tiltja (t = ...), a tömb tartalmát lehet módosítani."},
+            {"szoveg": "TypeError hibát kapunk", "helyes": false, "miert": "Hiba csak t = [...] esetén lenne; a push a meglévő tömböt bővíti."},
+            {"szoveg": "t tartalma [1] marad", "helyes": false, "miert": "A push hozzáadja a 2-t, a const ezt nem akadályozza meg."},
+            {"szoveg": "t értéke 2 lesz", "helyes": false, "miert": "A push a tömb végére tesz egy elemet, nem cseréli le a tömböt."}
+        ]
+    },
+    {
+        "kerdes": "Mit ír ki? if (true) { let a = 1; } console.log(a);",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "ReferenceError: a is not defined", "helyes": true, "miert": "A let-tel létrehozott változó csak a saját { } blokkján belül létezik."},
+            {"szoveg": "1", "helyes": false, "miert": "Ez var-ral így lenne; a let a blokkhoz kötött."},
+            {"szoveg": "undefined", "helyes": false, "miert": "Az a változó a blokkon kívül egyáltalán nem létezik, ezért hiba lesz, nem undefined."},
+            {"szoveg": "null", "helyes": false, "miert": "A nem létező változó hibát ad, nem null értéket."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a find(), ha egyik elem sem felel meg a feltételnek?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "undefined", "helyes": true, "miert": "A find az első megfelelő elemet adja vissza, ha nincs ilyen, undefined-ot."},
+            {"szoveg": "Üres tömböt ([])", "helyes": false, "miert": "Ez a filter viselkedése: az mindig tömböt ad vissza."},
+            {"szoveg": "-1", "helyes": false, "miert": "Ezt a findIndex és az indexOf adja vissza, ha nincs találat."},
+            {"szoveg": "null", "helyes": false, "miert": "A querySelector ad null-t, ha nincs találat; a find undefined-ot."},
+            {"szoveg": "Hibát dob", "helyes": false, "miert": "A sikertelen keresés nem hiba, csak nincs eredménye."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a [3, 5, 8].indexOf(10)?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "-1", "helyes": true, "miert": "Az indexOf -1-et ad vissza, ha az elem nincs a tömbben."},
+            {"szoveg": "undefined", "helyes": false, "miert": "Az undefined a find eredménye lenne; az indexOf mindig számot ad vissza."},
+            {"szoveg": "0", "helyes": false, "miert": "A 0 érvényes index (az első elem helye), ezért nem jelölheti a hiányt."},
+            {"szoveg": "3", "helyes": false, "miert": "A 3 a tömb hossza, nem keresési eredmény."},
+            {"szoveg": "Egy macskát", "helyes": false, "absurd": true, "miert": "A tömbben számok vannak, macskák nincsenek."}
+        ]
+    },
+    {
+        "kerdes": "Mi lesz x értéke? let x = 0; switch (1) { case 1: x = x + 1; case 2: x = x + 2; }",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "3", "helyes": true, "miert": "break nélkül a switch a megtalált case után a következő case kódját is lefuttatja: 0 + 1 + 2 = 3."},
+            {"szoveg": "1", "helyes": false, "miert": "Ez break-kel lenne így; break nélkül a case 2 is lefut."},
+            {"szoveg": "2", "helyes": false, "miert": "A case 1 is lefut, nem csak a case 2."},
+            {"szoveg": "0", "helyes": false, "miert": "A switch (1) megtalálja a case 1-et, tehát x biztosan változik."}
+        ]
+    },
+    {
+        "kerdes": "Hányszor fut le a ciklus? for (let i = 0; i <= 5; i++)",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "6-szor", "helyes": true, "miert": "i értékei: 0, 1, 2, 3, 4, 5. Ez hat kör, mert a <= az 5-öt is beleszámolja."},
+            {"szoveg": "5-ször", "helyes": false, "miert": "Ez i < 5 esetén lenne így."},
+            {"szoveg": "4-szer", "helyes": false, "miert": "0-tól indul, és az 5 is benne van, így több, mint 4."},
+            {"szoveg": "Végtelenszer", "helyes": false, "miert": "Az i++ minden körben növeli i-t, így a feltétel egyszer hamis lesz."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza t[t.length], ha t = [1, 2, 3]?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "undefined", "helyes": true, "miert": "Az indexek 0-tól length - 1-ig mennek, a t[3] helyen nincs elem."},
+            {"szoveg": "3", "helyes": false, "miert": "Az utolsó elem a t[t.length - 1], azaz a t[2]."},
+            {"szoveg": "Hibaüzenet", "helyes": false, "miert": "Nem létező indexre a JavaScript nem dob hibát, csak undefined-ot ad."},
+            {"szoveg": "1", "helyes": false, "miert": "Az index nem fordul körbe a tömb elejére."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a document.querySelector(\".nincsilyen\"), ha nincs ilyen elem?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "null", "helyes": true, "miert": "Ha nincs találat, a querySelector null-t ad. Innen jön a \"Cannot read properties of null\" hiba."},
+            {"szoveg": "undefined", "helyes": false, "miert": "A DOM-kereső metódusok találat hiányában null-t adnak, nem undefined-ot."},
+            {"szoveg": "Üres listát", "helyes": false, "miert": "Üres listát a querySelectorAll ad vissza."},
+            {"szoveg": "Hibát dob", "helyes": false, "miert": "Maga a keresés nem dob hibát; hiba csak akkor lesz, ha a null-lal próbálunk dolgozni."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a document.getElementById(\"#cim\"), ha az elem id-je cim?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "null", "helyes": true, "miert": "A getElementById-nek # nélkül kell az id; így egy \"#cim\" id-jű elemet keres, ami nincs."},
+            {"szoveg": "A cim id-jű elemet", "helyes": false, "miert": "Ez a querySelector(\"#cim\") vagy a getElementById(\"cim\") lenne."},
+            {"szoveg": "Hibát dob", "helyes": false, "miert": "Nem dob hibát: egyszerűen nem talál semmit, és null-t ad."},
+            {"szoveg": "Egy listát", "helyes": false, "miert": "A getElementById mindig egy elemet vagy null-t ad vissza."}
+        ]
+    },
+    {
+        "kerdes": "Mit ad vissza a document.getElementsByClassName(\"gomb\")?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "Az összes gomb osztályú elem listáját", "helyes": true, "miert": "Mindig listát (HTMLCollection) ad; egy elemhez [0] kell."},
+            {"szoveg": "Az első gomb osztályú elemet", "helyes": false, "miert": "Ezt a querySelector(\".gomb\") adja; itt a listából [0]-val kell kivenni."},
+            {"szoveg": "null-t, ha nincs ilyen elem", "helyes": false, "miert": "Találat nélkül is listát ad, csak üreset."},
+            {"szoveg": "Csak a <button> elemeket", "helyes": false, "miert": "Osztály alapján keres, bármilyen tagre."}
+        ]
+    },
+    {
+        "kerdes": "Milyen típusú egy <input type=\"number\"> mező .value értéke?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "string (szöveg)", "helyes": true, "miert": "A .value mindig szöveg, number típusú mezőnél is, ezért kell a Number()."},
+            {"szoveg": "number (szám)", "helyes": false, "miert": "A type=\"number\" csak a beírást korlátozza, a .value akkor is szöveg."},
+            {"szoveg": "boolean (logikai)", "helyes": false, "miert": "Logikai értéket a checkbox .checked tulajdonsága ad, nem a .value."},
+            {"szoveg": "undefined, ha szám van benne", "helyes": false, "miert": "A .value mindig szöveg; üres mezőnél \"\"."},
+            {"szoveg": "Kék", "helyes": false, "absurd": true, "miert": "Ez egy szín, nem adattípus."}
+        ]
+    },
+    {
+        "kerdes": "Mi történik? gomb.addEventListener(\"click\", szamol());",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "A szamol azonnal lefut betöltéskor, kattintásra viszont nem", "helyes": true, "miert": "A () meghívja a függvényt, és csak a visszatérési értéke (undefined) kerül az eseményre."},
+            {"szoveg": "Kattintásra lefut a szamol", "helyes": false, "miert": "Ehhez zárójel nélkül kell: addEventListener(\"click\", szamol)."},
+            {"szoveg": "Kattintásra kétszer fut le", "helyes": false, "miert": "Kattintásra egyszer sem fut, mert a függvény helyett az eredménye lett megadva."},
+            {"szoveg": "Szintaktikai hiba, az oldal be sem töltődik", "helyes": false, "miert": "Ez érvényes kód, csak nem azt csinálja, amit szeretnénk."}
+        ]
+    },
+    {
+        "kerdes": "Mi a <button> alapértelmezett típusa egy <form>-on belül?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "submit: elküldi az űrlapot, és újratölti az oldalt", "helyes": true, "miert": "Ezért kell type=\"button\" vagy preventDefault(), különben az eredmény eltűnik."},
+            {"szoveg": "button: csak a JS-kódot futtatja", "helyes": false, "miert": "Ezt külön meg kell adni: type=\"button\"."},
+            {"szoveg": "reset", "helyes": false, "miert": "A reset kiüríti a mezőket, de nem ez az alapértelmezett."},
+            {"szoveg": "Nincs típusa, semmit nem csinál", "helyes": false, "miert": "Űrlapon belül a gomb alapból elküldő (submit) gomb."}
+        ]
+    },
+    {
+        "kerdes": "Mi jelenik meg az oldalon? p.textContent = \"<b>Szia</b>\";",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "<b>Szia</b>, a tagekkel együtt", "helyes": true, "miert": "A textContent mindent sima szövegként ír ki; HTML-hez innerHTML kell."},
+            {"szoveg": "Szia, félkövéren", "helyes": false, "miert": "Ez innerHTML-lel lenne így."},
+            {"szoveg": "Szia, normál betűvel", "helyes": false, "miert": "A textContent nem dobja el a tageket, hanem kiírja őket."},
+            {"szoveg": "Semmi", "helyes": false, "miert": "A szöveg megjelenik, csak a tagekkel együtt."}
+        ]
+    },
+    {
+        "kerdes": "Miért ad null-t a getElementById, ha a <script> a <head>-ben van?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "Mert a script lefutásakor az elemek még nem jöttek létre", "helyes": true, "miert": "A böngésző fentről lefelé olvas, ezért kerül a script a </body> elé."},
+            {"szoveg": "Mert a <head>-ben nem működik a JavaScript", "helyes": false, "miert": "A <head>-ben is fut a JS, csak túl korán."},
+            {"szoveg": "Mert ott # kell az id elé", "helyes": false, "miert": "A getElementById-nek sosem kell #."},
+            {"szoveg": "Mert a <head>-ben csak CSS lehet", "helyes": false, "miert": "Scriptet a <head>-be is lehet tenni, pl. defer attribútummal."}
+        ]
+    },
+    {
+        "kerdes": "Milyen színű lesz a <p id=\"elso\" class=\"szoveg\"> szövege? #elso { color: blue; } .szoveg { color: green; } p { color: red; }",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "Kék", "helyes": true, "miert": "Az id-s szabály a legerősebb, utána jön az osztály, végül a tag."},
+            {"szoveg": "Zöld", "helyes": false, "miert": "Az osztály erősebb a tagnél, de gyengébb az id-nél."},
+            {"szoveg": "Piros, mert az az utolsó szabály", "helyes": false, "miert": "A sorrend csak egyforma erősségű szabályoknál dönt."},
+            {"szoveg": "Fekete, mert ütköznek a szabályok", "helyes": false, "miert": "Ütközésnél mindig az erősebb szabály nyer, nem az alapértelmezett szín."},
+            {"szoveg": "Lila, mert a színek összekeverednek", "helyes": false, "absurd": true, "miert": "A CSS nem keveri a színeket: mindig egy szabály nyer."}
+        ]
+    },
+    {
+        "kerdes": "Mit jelent a margin: 10px 20px;?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "Fent és lent 10px, jobbra és balra 20px", "helyes": true, "miert": "Két értéknél az első a függőleges, a második a vízszintes margó."},
+            {"szoveg": "Fent 10px, jobbra 20px, lent és balra 0", "helyes": false, "miert": "A hiányzó oldalak a megadottakat másolják, nem 0-k."},
+            {"szoveg": "Balra 10px, jobbra 20px", "helyes": false, "miert": "Két értéknél az első a fent-lent pár, nem a bal oldal."},
+            {"szoveg": "Minden oldalon 30px", "helyes": false, "miert": "Az értékek nem adódnak össze."}
+        ]
+    },
+    {
+        "kerdes": "Miért nem kerül középre egy div, amire csak margin: 0 auto; van megadva?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "Mert nincs megadva szélessége, így kitölti az egész sort", "helyes": true, "miert": "Az auto a maradék helyet osztja el két oldalra; teljes szélességnél nincs maradék. width vagy max-width kell."},
+            {"szoveg": "Mert text-align: center kell hozzá", "helyes": false, "miert": "A text-align a dobozon belüli tartalmat igazítja, nem magát a dobozt."},
+            {"szoveg": "Mert az auto csak képeknél működik", "helyes": false, "miert": "Bármilyen blokkelemnél működik, ha van szélessége."},
+            {"szoveg": "Mert a margin: 0 kikapcsolja a középre igazítást", "helyes": false, "miert": "A 0 csak a felső és alsó margó; a vízszintes az auto."}
+        ]
+    },
+    {
+        "kerdes": "Mi a különbség a display: none és a visibility: hidden között?",
+        "nehezseg": 3,
+        "valaszok": [
+            {"szoveg": "A none-nál az elem helye is eltűnik, a hidden-nél üres hely marad", "helyes": true, "miert": "A visibility: hidden csak láthatatlanná teszi az elemet, a helyét megtartja."},
+            {"szoveg": "Semmi, mindkettő ugyanazt csinálja", "helyes": false, "miert": "Mindkettő elrejt, de a helyfoglalásban különböznek."},
+            {"szoveg": "A none törli az elemet a HTML-ből", "helyes": false, "miert": "Az elem a DOM-ban marad, JS-ből újra megjeleníthető."},
+            {"szoveg": "A hidden-nél tűnik el az elem helye is", "helyes": false, "miert": "Fordítva: a display: none-nál tűnik el a hely."}
+        ]
+    },
+    {
+        "kerdes": "Hány oszlopos a Bootstrap rácsrendszere?",
+        "nehezseg": 1,
+        "valaszok": [
+            {"szoveg": "12", "helyes": true, "miert": "Ezért a col-md-6 fél, a col-md-4 harmad szélességű."},
+            {"szoveg": "10", "helyes": false, "miert": "Nem 10: a 12 oszlop 2, 3, 4 és 6 egyenlő részre is osztható."},
+            {"szoveg": "16", "helyes": false, "miert": "Nem 16: a col-* osztályok 1-től 12-ig mennek."},
+            {"szoveg": "Bármennyi, a képernyőtől függ", "helyes": false, "miert": "Az oszlopok száma mindig 12, csak a szélességük változik."},
+            {"szoveg": "3, mint a kismalacok", "helyes": false, "absurd": true, "miert": "Ez mese, nem Bootstrap."}
+        ]
+    },
+    {
+        "kerdes": "Melyik osztály tesz félkövérré egy szöveget Bootstrap 5-ben?",
+        "nehezseg": 2,
+        "valaszok": [
+            {"szoveg": "fw-bold", "helyes": true, "miert": "A Bootstrap 5-ben a betűvastagság osztályai fw-vel kezdődnek."},
+            {"szoveg": "font-weight-bold", "helyes": false, "miert": "Ez a Bootstrap 4-es név, az 5-ös verzióban már nem működik."},
+            {"szoveg": "text-bold", "helyes": false, "miert": "Ilyen osztály nincs a Bootstrapben."},
+            {"szoveg": "bold", "helyes": false, "miert": "Ilyen osztály nincs; a CSS-ben a font-weight: bold a megfelelője."}
+        ]
+    }
+]
